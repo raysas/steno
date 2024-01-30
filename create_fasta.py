@@ -3,20 +3,15 @@
 #takes a fasta string and creates a fasta file using biopython
 
 import Bio.SeqIO
+import Bio.Seq
+import Bio.SeqRecord
 
-def create_fasta(fasta_string:str, fasta_name:str)->file:
-    fasta_file = open(fasta_name, "w")
+def create_fasta():
+    file_seq=open("sequence.txt","r")
+    seq=file_seq.read()
+
+    seq_record=Bio.SeqRecord.SeqRecord(Bio.Seq.Seq(seq))
+    seq_record.id="sequence"
+    with open("sequence.fasta","w") as output_handle:
+        Bio.SeqIO.write(seq_record,output_handle,"fasta")
     
-    #use biopython to write the fasta file
-    Bio.SeqIO.write(fasta_string, fasta_file, "fasta")
-
-    fasta_file.close()
-    return fasta_file
-
-def main():
-    #convert a file into a string
-    fasta_string = open("CP077679.fasta", "r").read()
-    create_fasta(fasta_string, "ref.fasta")
-
-if __name__ == "__main__":
-    main()
