@@ -18,4 +18,5 @@ def main():
     fasta_string = open("CP077679.fasta", "r").read()
     create_fasta(fasta_string, "ref.fasta")
 
-main()
+if __name__ == "__main__":
+    main()
